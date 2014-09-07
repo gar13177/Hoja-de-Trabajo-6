@@ -28,8 +28,9 @@ public class Main {
         System.out.println(" 1. HashSet");
         System.out.println(" 2. TreeSet");
         System.out.println(" 3. LinkedHashSet");
-       
         _opcionFactory = in.next();
+        System.out.println(_opcionFactory);
+        
         Set<String> _java = setFactory.getSet(_opcionFactory);
         Set<String> _web = setFactory.getSet(_opcionFactory);
         Set<String> _celulares = setFactory.getSet(_opcionFactory);
@@ -45,26 +46,22 @@ public class Main {
             System.out.println(" 7. El conjunto que tenga la cantidad más grande de desarrolladores");
             System.out.println(" 8. Desplegar integrantes del conjunto en 7");
             System.out.println(" 9. Salir");
-            _opcionMenu = in.next();
-            System.out.print("");
-            
+            _opcionMenu = in.next();   
+            System.out.println(_opcionMenu);
             
             switch (_opcionMenu){
                 case "1":
                     System.out.println("Ingrese el nombre de la persona:");
-                    String nombre;
-                    nombre = in.nextLine().toUpperCase();
-                    in.next();
+                    String nombre = in.nextLine().toUpperCase();
+                    System.out.println("Nombre: "+nombre);
                     System.out.println("Ingrece la experiencia que posee (Java, web y/o celulares, ingresar en una sola cadena con espacios)");
-                    String experiencia;
-                    experiencia = in.nextLine().toUpperCase();
-                    in.next();
+                    String experiencia = in.nextLine().toUpperCase();
+                    System.out.println("Experiencia: "+experiencia);
                     if (experiencia.contains("JAVA")){
                         _java.add(nombre);
                     }
                     if (experiencia.contains("WEB")){
-                        _web.add(nombre);
-                        
+                        _web.add(nombre);  
                     }
                     if (experiencia.contains("CELULARES")){
                         _celulares.add(nombre);

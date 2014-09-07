@@ -20,8 +20,8 @@ public class Main {
      */
     public static void main(String[] args){
         FactorySet setFactory = new FactorySet<>();
-        int _opcionFactory;
-        int _opcionMenu = 0;
+        String _opcionFactory;
+        String _opcionMenu = "0";
         Scanner in  = new Scanner(System.in);
         
         System.out.println("Seleccione la implementacion del SET");
@@ -29,12 +29,12 @@ public class Main {
         System.out.println(" 2. TreeSet");
         System.out.println(" 3. LinkedHashSet");
        
-        _opcionFactory = in.nextInt();
+        _opcionFactory = in.next();
         Set<String> _java = setFactory.getSet(_opcionFactory);
         Set<String> _web = setFactory.getSet(_opcionFactory);
         Set<String> _celulares = setFactory.getSet(_opcionFactory);
         
-        while (_opcionMenu != 9){
+        while (!_opcionMenu.equals("9")){
             System.out.println("Seleccione una opcion");
             System.out.println(" 1. Agregar una persona");
             System.out.println(" 2. Desarrolladores con experiencia en Java, web y celulares");
@@ -45,14 +45,20 @@ public class Main {
             System.out.println(" 7. El conjunto que tenga la cantidad más grande de desarrolladores");
             System.out.println(" 8. Desplegar integrantes del conjunto en 7");
             System.out.println(" 9. Salir");
-            _opcionMenu = in.nextInt();
+            _opcionMenu = in.next();
+            System.out.print("");
+            
             
             switch (_opcionMenu){
-                case 1:
+                case "1":
                     System.out.println("Ingrese el nombre de la persona:");
-                    String nombre = in.nextLine().toUpperCase();
+                    String nombre;
+                    nombre = in.nextLine().toUpperCase();
+                    in.next();
                     System.out.println("Ingrece la experiencia que posee (Java, web y/o celulares, ingresar en una sola cadena con espacios)");
-                    String experiencia = in.nextLine().toUpperCase();
+                    String experiencia;
+                    experiencia = in.nextLine().toUpperCase();
+                    in.next();
                     if (experiencia.contains("JAVA")){
                         _java.add(nombre);
                     }
@@ -63,21 +69,82 @@ public class Main {
                     if (experiencia.contains("CELULARES")){
                         _celulares.add(nombre);
                     }
-                case 6:
+                    break;
+                case "2":
+                    for (String persona: _java){
+                        if (_web.contains(persona) && _celulares.contains(persona)){
+                            System.out.println(persona);
+                        }
+                    }
+                    break;
+                case "3":
+                    for (String persona: _java){
+                        if (!_web.contains(persona)){
+                            System.out.println(persona);
+                        }
+                    }
+                    break;
+                case "4":
+                    for (String persona: _web){
+                        if (_celulares.contains(persona) && !_java.contains(persona)){
+                            System.out.println(persona);
+                        }
+                    }
+                    break;
+                case "5":
+                    for (String persona: _web){
+                        if (!_java.contains(persona)){
+                            System.out.println(persona);
+                        }
+                    }
+                    for (String persona: _celulares){
+                        if (!_web.contains(persona) && !_java.contains(persona)){
+                            System.out.println(persona);
+                        }
+                    }
+                    break;
+                case "6":
                     if (_web.containsAll(_java)){
                         System.out.println("Si es subconjunto");
                     }else{
                         System.out.println("No es subconjunto");
                     }
+                    break;
+                case "7":
+                    int _javaSize = _java.size();
+                    int _webSize = _web.size();
+                    int _celularesSize = _celulares.size();
                     
+                    if (_javaSize >= _webSize && _javaSize >= _celularesSize){
+                        System.out.println("El mayor tamaño Java con: "+_javaSize);
+                    }else if (_webSize >= _javaSize && _webSize >= _celularesSize){
+                        System.out.println("El mayor tamaño Web con: "+_webSize);
+                    }else if (_celularesSize >= _javaSize && _celularesSize >= _webSize){
+                        System.out.println("El mayor tamaño Celulares con: "+_celularesSize);
+                    }
+                    break;
+                case "8":
+                    _javaSize = _java.size();
+                    _webSize = _web.size();
+                    _celularesSize = _celulares.size();
                     
-                    
+                    if (_javaSize >= _webSize && _javaSize >= _celularesSize){
+                        List sorted = new ArrayList(_java);
+                        Collections.sort(sorted);
+                        System.out.println(sorted);
+                        
+                    }else if (_webSize >= _javaSize && _webSize >= _celularesSize){
+                        List sorted = new ArrayList(_web);
+                        Collections.sort(sorted);
+                        System.out.println(sorted);
+                    }else if (_celularesSize >= _javaSize && _celularesSize >= _webSize){
+                        List sorted = new ArrayList(_celulares);
+                        Collections.sort(sorted);
+                        System.out.println(sorted);
+                    }
+                    break;    
             }
-                    
-            
-        }
-        
-        
+        }  
     }
     
 }

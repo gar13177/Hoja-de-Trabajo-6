@@ -53,6 +53,23 @@ public class Main {
                     String nombre = in.nextLine().toUpperCase();
                     System.out.println("Ingrece la experiencia que posee (Java, web y/o celulares, ingresar en una sola cadena con espacios)");
                     String experiencia = in.nextLine().toUpperCase();
+                    if (experiencia.contains("JAVA")){
+                        _java.add(nombre);
+                    }
+                    if (experiencia.contains("WEB")){
+                        _web.add(nombre);
+                        
+                    }
+                    if (experiencia.contains("CELULARES")){
+                        _celulares.add(nombre);
+                    }
+                case 6:
+                    if (_web.containsAll(_java)){
+                        System.out.println("Si es subconjunto");
+                    }else{
+                        System.out.println("No es subconjunto");
+                    }
+                    
                     
                     
             }

@@ -28,8 +28,7 @@ public class Main {
         System.out.println(" 1. HashSet");
         System.out.println(" 2. TreeSet");
         System.out.println(" 3. LinkedHashSet");
-        _opcionFactory = in.next();
-        System.out.println(_opcionFactory);
+        _opcionFactory = in.nextLine();
         
         Set<String> _java = setFactory.getSet(_opcionFactory);
         Set<String> _web = setFactory.getSet(_opcionFactory);
@@ -46,17 +45,22 @@ public class Main {
             System.out.println(" 7. El conjunto que tenga la cantidad más grande de desarrolladores");
             System.out.println(" 8. Desplegar integrantes del conjunto en 7");
             System.out.println(" 9. Salir");
-            _opcionMenu = in.next();   
-            System.out.println(_opcionMenu);
-            
+            _opcionMenu = in.nextLine();
+
             switch (_opcionMenu){
                 case "1":
                     System.out.println("Ingrese el nombre de la persona:");
-                    String nombre = in.nextLine().toUpperCase();
-                    System.out.println("Nombre: "+nombre);
+                  
+                    String nombre = in.nextLine();
+                    
+                    nombre = nombre.toUpperCase();
+                   
                     System.out.println("Ingrece la experiencia que posee (Java, web y/o celulares, ingresar en una sola cadena con espacios)");
-                    String experiencia = in.nextLine().toUpperCase();
-                    System.out.println("Experiencia: "+experiencia);
+                   
+                    String experiencia = in.nextLine();
+                    experiencia = experiencia.toUpperCase();
+                   
+                    
                     if (experiencia.contains("JAVA")){
                         _java.add(nombre);
                     }
